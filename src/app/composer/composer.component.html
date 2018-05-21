@@ -1,0 +1,60 @@
+<form [formGroup]="form">
+  <div fxLayout="row" fxLayout="start stretch">
+    <div fxFlex style="margin: 1em; margin-right: 0.5em; margin-top: 0">
+      <mat-card>
+        <!-- class="example-container" -->
+        <div fxLayout="column row" fxLayoutAlign="start stretch">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title">
+            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+            <mat-hint>{{permalink || 'nothing yet'}}</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlex="60">
+            <mat-label>Author</mat-label>
+            <input matInput formControlName="author">
+            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+            <!-- <mat-hint>Hint</mat-hint> -->
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlexFill>
+            <mat-label>Tags</mat-label>
+            <mat-chip-list #chipList>
+              <mat-chip *ngFor="let tag of tags.controls; let idx = index;" [selectable]="selectable" [removable]="removable" (removed)="remove(idx, tag)">
+                {{tag.value}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="Add a tag..." #tagInput [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" />
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let tag of filteredTerms | async" [value]="tag.term">
+                {{ tag.term }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Post message</mat-label>
+            <textarea class="compose-text" #textArea matInput formControlName="source" matAutosizeMinRows="20" minRows="20" placeholder="Textarea"></textarea>
+            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+            <!-- <mat-hint>Hint</mat-hint> -->
+          </mat-form-field>
+        </div>
+
+        <button mat-button (click)="create()">
+          create
+        </button>
+        <button mat-button (click)="reset()">
+          reset
+        </button>
+      </mat-card>
+    </div>
+    <div fxFlex style="margin: 1em; margin-left: 0.5em; margin-top: 0">
+      <app-post [data]="delayedFormValue | async"></app-post>
+    </div>
+  </div>
+
+</form>

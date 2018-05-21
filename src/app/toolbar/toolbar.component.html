@@ -1,0 +1,30 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  <mat-toolbar-row>
+    <div fxFlex></div>
+    <a href="login" mat-button *ngIf="!loginCtrl.logged;else logged">
+      Login
+    </a>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row>
+    <div fxFlex="grow" class="mat-display-1 markdown-content" [innerHTML]="title"></div>
+    <div fxFlex>
+      <a href="home" mat-button>
+        Home
+      </a>
+      <a href="about" mat-button>
+        About
+      </a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<ng-template #logged>
+  <span>{{loginCtrl.model.name}}</span>
+  <a href="you-should-not-be-here" mat-button>
+    Compose
+  </a>
+  <button mat-button (click)="loginCtrl.logoff()">
+    Logout
+  </button>
+</ng-template>

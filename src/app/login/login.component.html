@@ -1,0 +1,17 @@
+<div fxLayout="row column" fxLayoutAlign="center stretch">
+  <mat-card class="login">
+    <div fxLayout="column" fxLayoutAlign="stretch stretch">
+      <mat-form-field>
+        <input matInput placeholder="email" type="email" [(ngModel)]="model.email">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="password" type="password" [(ngModel)]="model.password">
+      </mat-form-field>
+    </div>
+    <mat-card-actions align="end">
+      <button mat-button (click)="send()">
+        LOGIN
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

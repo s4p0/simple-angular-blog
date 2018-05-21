@@ -1,0 +1,103 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+.wrapper,
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.sidebar {
+  padding-top: 2em;
+  padding-left: 1em;
+  padding-right: 2em;
+  width: 100%;
+}
+
+.main {
+  margin-top: 2em;
+}
+
+.dashboard {
+  display: flex;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+.compose-text {
+  width: 100%;
+  padding: 3px;
+}
+
+.compose-text:focus {
+  height: 20em;
+}
+
+.markdown-content {
+  overflow: hidden;
+}
+
+.article {
+  max-width: 1040px;
+  /* min-width: 800px; */
+
+  /* max-width: 300px; */
+  /* align-items: center;
+  align-content: center;
+  align-self: center; */
+}
+
+.article.list {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+body:not([style-scope]):not(.style-scope) {
+  background: #f8f9fa !important;
+}
+
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: '\201C' '\201D' '\2018' '\2019';
+}
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+blockquote p {
+  display: inline;
+}
+
+/* .emoji {
+  height: 1.2em;
+} */
+
+.markdown-content img {
+  max-width: 20%;
+}
+
+.emoji {
+  height: 0.9em;
+  width: 0.9em;
+  margin: 0 0.05em 0 0.1em;
+  vertical-align: -0.1em;
+}
+
+.login {
+  max-width: 624px;
+  width: 100%;
+}

@@ -1,0 +1,34 @@
+<div fxLayout="row">
+  <section fxFlex class="article">
+    <mat-card>
+
+      <mat-card-title>
+        <p class="mat-headline">{{post.title | titlecase}}</p>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <small>{{post.created | date}} - {{post.author}}</small>
+      </mat-card-subtitle>
+      <mat-divider inset="true"></mat-divider>
+      <mat-card-content>
+        <section class="mat-typography markdown-content">
+          <div [innerHtml]="post.rendered"></div>
+        </section>
+      </mat-card-content>
+
+      <mat-card-actions align="start" *ngIf="showMore">
+        <button mat-button color="primary" routerLink="/article/{{post.permalink}}">
+          READ MORE
+        </button>
+      </mat-card-actions>
+
+      <mat-divider inset="true"></mat-divider>
+
+      <mat-card-footer>
+        <button color="primary" mat-button type="button" class="mat-caption" *ngFor="let tag of post.tags">
+          <small>{{tag}}</small>
+        </button>
+      </mat-card-footer>
+
+    </mat-card>
+  </section>
+</div>

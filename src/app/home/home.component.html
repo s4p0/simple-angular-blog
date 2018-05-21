@@ -1,0 +1,5 @@
+<div fxLayout="column row" fxLayoutAlign="center stretch">
+  <div fxLayout="row column" fxLayoutAlign="center center" *ngFor="let post of posts$ | async">
+    <app-post fxFlex class="article list" [data]="post" showMore="true"></app-post>
+  </div>
+</div>

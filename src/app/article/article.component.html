@@ -1,0 +1,11 @@
+<div fxLayout="column row" fxLayoutAlign="center stretch">
+
+  <div *ngIf="!post?.rendered" style="margin-top:32px" fxFlexAlign="center">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="post?.rendered" fxLayout="row column" fxLayoutAlign="center stretch">
+    <app-post fxFlex class="article" [data]="post"></app-post>
+
+  </div>
+</div>
