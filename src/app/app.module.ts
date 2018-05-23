@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -24,24 +25,26 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { AdminComponent } from './admin/admin.component';
 import { AppComponent } from './app.component';
 import { AuthHttpInterceptor } from './app.interceptor';
-
+import { AppRoutes } from './app.routes';
+import { ArticleResolver } from './article.resolver';
 import { ArticleComponent } from './article/article.component';
 import { ComposerComponent } from './composer/composer.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { HomeService } from './home/home.service';
-import { ListComponent } from './list/list.component';
 import { LoginComponent } from './login/login.component';
+import { MarkdownDirective } from './markdown.directive';
 import { MarkdownService } from './markdown.service';
 import { PostComponent } from './post/post.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { RouterModule } from '@angular/router';
-import { AppRoutes } from './app.routes';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -54,9 +57,10 @@ import { AppRoutes } from './app.routes';
     HomeComponent,
     SidebarComponent,
     AboutComponent,
-    ListComponent,
     PostComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent,
+    MarkdownDirective
   ],
   imports: [
     BrowserModule,
@@ -85,11 +89,14 @@ import { AppRoutes } from './app.routes';
     MatListModule,
     MatDialogModule,
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressBarModule,
+    MatMenuModule
   ],
   providers: [
     HomeService,
     MarkdownService,
+    ArticleResolver,
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

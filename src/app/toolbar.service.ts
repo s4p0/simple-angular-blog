@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MarkdownService } from './markdown.service';
 import { SafeHtml } from '@angular/platform-browser';
+import { environment } from '../environments/environment';
 
 const twemoji = window['twemoji'];
 
@@ -8,16 +9,16 @@ const twemoji = window['twemoji'];
   providedIn: 'root'
 })
 export class ToolbarService {
-  private _title: SafeHtml;
+  title: SafeHtml;
   constructor(private mark: MarkdownService) {
-    this.title = 'Felipe Correa   :nerd_face: :frog:';
+    this.title = environment.blogName;
   }
 
-  set title(value: SafeHtml) {
-    this._title = this.mark.render(value);
-  }
+  // set title(value: SafeHtml) {
+  //   this._title = this.mark.render(value);
+  // }
 
-  get title(): SafeHtml {
-    return this._title;
-  }
+  // get title(): SafeHtml {
+  //   return this._title;
+  // }
 }

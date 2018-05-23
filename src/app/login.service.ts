@@ -4,6 +4,7 @@ import { MESSAGES } from './app.consts';
 import { Login, LoginToken } from './app.models';
 import { DbService } from './db.service';
 import { UsersService } from './users.service';
+import { Router } from '@angular/router';
 
 const empty = { token: '', email: '', name: '' };
 
@@ -11,11 +12,13 @@ const empty = { token: '', email: '', name: '' };
   providedIn: 'root'
 })
 export class LoginService {
+  redirectUrl: string;
   model: LoginToken;
   constructor(
     private usersCtrl: UsersService,
     private snackBar: MatSnackBar,
-    private dbCtrl: DbService
+    private dbCtrl: DbService,
+    private router: Router
   ) {
     this.model = dbCtrl.getLoginToken();
     console.log('db value: ', this.model);
@@ -27,6 +30,7 @@ export class LoginService {
       res => {
         this.model = res;
         this.dbCtrl.storeLoginToken(res);
+        this.router.navigate(['/dashboard']);
       },
       err => {
         this.dbCtrl.removeLoginToken();
@@ -41,6 +45,7 @@ export class LoginService {
     this.model = null;
     this.dbCtrl.removeLoginToken();
     this.snackBar.open(MESSAGES.LOGOFF, null, { duration: 800 });
+    this.router.navigate(['/login']);
   }
 
   get token() {

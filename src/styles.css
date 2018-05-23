@@ -101,3 +101,7 @@ blockquote p {
   max-width: 624px;
   width: 100%;
 }
+
+.markdown-directive > p {
+  font-size: 80px;
+}
