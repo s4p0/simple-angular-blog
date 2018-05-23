@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://w7xzqmp6hj.execute-api.us-east-1.amazonaws.com/Prod',
-  blogName: 'Felipe Correa   :nerd_face: :frog:'
+  apiUrl: '<your api>',
+  blogName: '<your blog>'
 };
