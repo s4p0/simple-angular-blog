@@ -15,6 +15,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -36,15 +37,15 @@ import { ArticleComponent } from './article/article.component';
 import { ComposerComponent } from './composer/composer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
-import { HomeService } from './home/home.service';
 import { LoginComponent } from './login/login.component';
 import { MarkdownDirective } from './markdown.directive';
 import { MarkdownService } from './markdown.service';
 import { PostComponent } from './post/post.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
+import { ShellComponent } from './shell/shell.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { MatMenuModule } from '@angular/material/menu';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { MatMenuModule } from '@angular/material/menu';
     PostComponent,
     LoginComponent,
     DashboardComponent,
-    MarkdownDirective
+    MarkdownDirective,
+    ShellComponent
   ],
   imports: [
     BrowserModule,
@@ -91,10 +93,10 @@ import { MatMenuModule } from '@angular/material/menu';
     FormsModule,
     MatSnackBarModule,
     MatProgressBarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatBottomSheetModule
   ],
   providers: [
-    HomeService,
     MarkdownService,
     ArticleResolver,
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true }

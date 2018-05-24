@@ -8,6 +8,7 @@ import {
   RouterEvent
 } from '@angular/router';
 import { LoginService } from './login.service';
+import { ToolbarService } from './toolbar.service';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +17,11 @@ import { LoginService } from './login.service';
 })
 export class AppComponent {
   loading: boolean;
-  title = 'Blog';
-  constructor(private loginCtrl: LoginService, router: Router) {
+  constructor(
+    router: Router,
+    private loginCtrl: LoginService,
+    private toolbarCtrl: ToolbarService
+  ) {
     router.events.subscribe((routerEvent: RouterEvent) => {
       this.routerEventHandler(routerEvent);
     });
@@ -25,16 +29,14 @@ export class AppComponent {
 
   routerEventHandler(routerEvent: RouterEvent) {
     if (routerEvent instanceof NavigationStart) {
-      this.loading = true;
-      console.log(this.loading);
+      this.toolbarCtrl.loading = true;
     }
     if (
       routerEvent instanceof NavigationEnd ||
       routerEvent instanceof NavigationCancel ||
       routerEvent instanceof NavigationError
     ) {
-      this.loading = false;
-      console.log(this.loading);
+      this.toolbarCtrl.loading = false;
     }
 
     return routerEvent;

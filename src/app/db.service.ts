@@ -8,27 +8,22 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class DbService {
-  observe(subject: BehaviorSubject<any>): any {
-    if (!subject) {
-      return;
-    }
-    subject.subscribe(item => {
-      this.storePost(item);
-    });
-  }
   constructor(private snackBar: MatSnackBar) {}
 
   storePost(post: Post) {
+    const data = this.getStoredPosts();
+    data.push(post);
+
+    localStorage.setItem(KEY_NAMES.TEMP_POST, JSON.stringify(data));
     this.snackBar.open(MESSAGES.POST_SAVED, null, {
       duration: 800
     });
-    localStorage.setItem(KEY_NAMES.TEMP_POST, JSON.stringify(post));
   }
 
-  getPost() {
-    const storedValue = localStorage.getItem(KEY_NAMES.TEMP_POST);
+  getStoredPosts() {
+    const storedValue = localStorage.getItem(KEY_NAMES.TEMP_POST) || '[]';
     const res = storedValue != null ? JSON.parse(storedValue) : {};
-    return <Post>res;
+    return <Post[]>res;
   }
 
   storeLoginToken(login: LoginToken) {

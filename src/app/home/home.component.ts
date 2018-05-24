@@ -1,19 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { HomeService } from './home.service';
+import { Post } from '../app.models';
+import { PostsService } from '../posts.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
-  providers: [HomeService]
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  posts$: Observable<Object>;
+  posts: Post[];
+  constructor(postsCtrl: PostsService, http: HttpClient) {
+    postsCtrl.getPosts().subscribe(items => {
+      this.posts = items;
+    });
+  }
 
-  constructor(hs: HomeService, http: HttpClient) {
-    this.posts$ = hs.posts;
+  get notEmpty() {
+    return this.posts !== undefined && this.posts.length > 0;
   }
 
   ngOnInit() {}

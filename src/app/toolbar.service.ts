@@ -9,16 +9,9 @@ const twemoji = window['twemoji'];
   providedIn: 'root'
 })
 export class ToolbarService {
+  loading: boolean;
   title: SafeHtml;
   constructor(private mark: MarkdownService) {
     this.title = environment.blogName;
   }
-
-  // set title(value: SafeHtml) {
-  //   this._title = this.mark.render(value);
-  // }
-
-  // get title(): SafeHtml {
-  //   return this._title;
-  // }
 }

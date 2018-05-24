@@ -16,6 +16,9 @@ import {
 import { MarkdownService } from '../markdown.service';
 import { PostsService } from '../posts.service';
 import { DbService } from '../db.service';
+import { LoginService } from '../login.service';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { post } from 'selenium-webdriver/http';
 
 const hljs = window['hljs'];
 
@@ -25,8 +28,6 @@ const hljs = window['hljs'];
   styleUrls: ['./composer.component.css']
 })
 export class ComposerComponent implements OnInit {
-  // delayedFormValue = new BehaviorSubject<any>(null);
-
   delayedFormValue: BehaviorSubject<any>;
 
   form: FormGroup;
@@ -53,22 +54,39 @@ export class ComposerComponent implements OnInit {
     private fb: FormBuilder,
     private mark: MarkdownService,
     private posts: PostsService,
-    private dbCtrl: DbService
+    private dbCtrl: DbService,
+    private loginCtrl: LoginService,
+    private matBottomCtrl: MatBottomSheet
   ) {
-    this.delayedFormValue = new BehaviorSubject<any>(dbCtrl.getPost());
+    // this.delayedFormValue = new BehaviorSubject<any>(dbCtrl.getPost());
+    this.delayedFormValue = new BehaviorSubject<any>({});
+  }
+
+  ngOnInit() {
     this.createForm();
     this.onChanges();
     this.setupTags();
-    this.form.patchValue(this.delayedFormValue.getValue());
-    dbCtrl.observe(this.delayedFormValue);
+    // this.setupPost();
+    this.setupTerms();
+    this.restorePost();
+  }
+
+  restorePost() {
+    const posts = this.dbCtrl.getStoredPosts();
+    // if(post.length > 0){
+    //   const bottomSheetRef = bottomSheet.open(HobbitSheet, {
+    //     data: { names: ['Frodo', 'Bilbo'] },
+    //   });
+    // }
+  }
+
+  setupPost() {
+    const value = this.delayedFormValue.getValue();
+    this.form.patchValue(value);
   }
 
   get tags() {
     return this.form.get('tags') as FormArray;
-  }
-
-  tabChanged() {
-    console.log('changed');
   }
 
   add(event: MatChipInputEvent): void {
@@ -76,7 +94,6 @@ export class ComposerComponent implements OnInit {
     const value = event.value.trim();
 
     if (value !== '' || value !== null) {
-      console.log(value);
       // add value to array
       this.tags.push(this.fb.control(value.trim()));
     }
@@ -97,9 +114,8 @@ export class ComposerComponent implements OnInit {
   }
 
   filter(name: string) {
-    // console.log('filter', name);
     return this.allTerms.filter(
-      fruit => fruit.term.toLocaleLowerCase().indexOf(name.toLowerCase()) === 0
+      tag => tag.term.toLocaleLowerCase().indexOf(name.toLowerCase()) === 0
     );
   }
 
@@ -109,7 +125,7 @@ export class ComposerComponent implements OnInit {
       permalink: [this.permalink],
       tags: this.fb.array([], Validators.required),
       source: ['', Validators.required],
-      author: ['', this.fb.control(Date.now())]
+      author: this.loginCtrl.model.name
     });
   }
 
@@ -119,7 +135,7 @@ export class ComposerComponent implements OnInit {
       .valueChanges.subscribe(data => this.createPermalink(data));
 
     this.form.valueChanges
-      .pipe(debounceTime(500), distinctUntilChanged())
+      .pipe(debounceTime(1000), distinctUntilChanged())
       .subscribe(this.delayedFormValue);
   }
 
@@ -150,15 +166,22 @@ export class ComposerComponent implements OnInit {
   create() {
     this.posts.addPost(this.form.value).subscribe(res => {
       console.log('created');
-      this.form.reset();
+      this.reset();
     });
   }
 
   reset() {
+    this.form.markAsPristine();
+    this.form.markAsUntouched();
     this.form.reset();
   }
 
-  ngOnInit() {
+  draft() {
+    this.dbCtrl.storePost(this.form.value);
+    this.form.markAsPristine();
+  }
+
+  setupTerms() {
     this.filteredTerms = fromEvent(this.tagInput.nativeElement, 'keyup').pipe(
       map((evt: any) => evt.target.value),
       startWith(null),

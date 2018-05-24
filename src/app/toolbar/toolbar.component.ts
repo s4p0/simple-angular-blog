@@ -18,4 +18,8 @@ export class ToolbarComponent implements OnInit {
   get title() {
     return this.toolbarCtrl.title;
   }
+
+  get loading() {
+    return this.toolbarCtrl.loading;
+  }
 }

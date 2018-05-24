@@ -1,4 +1,10 @@
-import { Directive, Input, ElementRef, OnInit } from '@angular/core';
+import {
+  Directive,
+  Input,
+  ElementRef,
+  OnInit,
+  SecurityContext
+} from '@angular/core';
 import { MarkdownService } from './markdown.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { createElement } from '@angular/core/src/view/element';
@@ -16,10 +22,9 @@ export class MarkdownDirective implements OnInit {
   ) {}
   ngOnInit(): void {
     const rendered = this.markdown.render(this.appMarkdown);
-    if (this.sanitizerString in rendered) {
-      this.el.nativeElement.innerHTML = rendered[this.sanitizerString];
-    } else {
-      this.el.nativeElement.innerHTML = rendered;
-    }
+    this.el.nativeElement.innerHTML = this.sanitizer.sanitize(
+      SecurityContext.HTML,
+      rendered
+    );
   }
 }

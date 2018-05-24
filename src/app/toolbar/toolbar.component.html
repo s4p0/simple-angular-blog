@@ -9,20 +9,22 @@
   <mat-toolbar-row>
     <div fxFlex="grow" class="mat-display-1 markdown-content" [appMarkdown]="title"></div>
     <div fxFlex>
-      <a href="home" mat-button>
+      <a routerLink="/home" mat-button>
         Home
       </a>
-      <!--
-        <a href="about" mat-button>
+
+      <a routerLink="/about" mat-button>
         About
       </a>
-     -->
+
       <mat-menu #appMenu="matMenu">
-        <button mat-menu-item>Settings</button>
-        <button mat-menu-item>Help</button>
+        <a *ngIf="!loginCtrl.logged" routerLink="/login" mat-menu-item>Login</a>
+        <a *ngIf="loginCtrl.logged" routerLink="/you-should-not-be-here" mat-menu-item>Compose</a>
+        <a *ngIf="loginCtrl.logged" routerLink="/list" mat-menu-item>Edit</a>
+        <button *ngIf="loginCtrl.logged" mat-menu-item (click)="loginCtrl.logoff()">Logout</button>
       </mat-menu>
 
-      <button mat-icon-button [matMenuTriggerFor]="appMenu">
+      <button mat-icon-button [matMenuTriggerFor]="appMenu ">
         <mat-icon>more_vert</mat-icon>
       </button>
 
@@ -30,12 +32,6 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<ng-template #logged>
-  <span>{{loginCtrl.model.name}}</span>
-  <a href="dashboard" mat-button>
-    Dashboard
-  </a>
-  <button mat-button (click)="loginCtrl.logoff()">
-    Logout
-  </button>
-</ng-template>
+<div [hidden]="!loading ">
+  <mat-progress-bar mode="buffer "></mat-progress-bar>
+</div>

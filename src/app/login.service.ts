@@ -21,7 +21,6 @@ export class LoginService {
     private router: Router
   ) {
     this.model = dbCtrl.getLoginToken();
-    console.log('db value: ', this.model);
   }
 
   login(user: Login) {
