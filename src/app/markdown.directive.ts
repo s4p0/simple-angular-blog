@@ -14,7 +14,6 @@ import { createElement } from '@angular/core/src/view/element';
 })
 export class MarkdownDirective implements OnInit {
   @Input() appMarkdown: any;
-  private sanitizerString = 'changingThisBreaksApplicationSecurity';
   constructor(
     private el: ElementRef,
     private markdown: MarkdownService,

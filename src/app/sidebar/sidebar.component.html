@@ -1,4 +1,16 @@
-<div class="sidebar">
-  <button mat-button routerLink="/">Home</button>
-  <button mat-button routerLink="/about">About</button>
-</div>
+<mat-toolbar color="primary">
+
+  <mat-toolbar-row>
+    <span *ngIf="name">Oi {{name}}</span>
+  </mat-toolbar-row>
+
+</mat-toolbar>
+<mat-nav-list>
+
+  <ng-template ngFor let-menu [ngForOf]="menus$ | async" let-i="index">
+    <a mat-list-item [routerLink]="menu.link" *ngIf="!(menu.condition && !menu.condition())" (click)="menu.action && menu.action()">
+      {{menu.caption}}
+    </a>
+  </ng-template>
+
+</mat-nav-list>

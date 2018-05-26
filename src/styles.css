@@ -105,3 +105,15 @@ blockquote p {
 .markdown-directive > p {
   font-size: 80px;
 }
+
+mat-sidenav-container {
+  flex: 1 1 auto;
+  height: 100%;
+  background: #f8f9fa !important;
+}
+
+mat-sidenav {
+  padding-top: 0;
+  width: 260px;
+  background: #f8f9fa !important;
+}

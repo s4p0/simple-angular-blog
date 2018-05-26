@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {
   NavigationCancel,
   NavigationEnd,
@@ -9,6 +9,7 @@ import {
 } from '@angular/router';
 import { LoginService } from './login.service';
 import { ToolbarService } from './toolbar.service';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,8 @@ import { ToolbarService } from './toolbar.service';
 })
 export class AppComponent {
   loading: boolean;
+  isOpened: boolean;
+  @ViewChild(MatSidenav) sideNav: MatSidenav;
   constructor(
     router: Router,
     private loginCtrl: LoginService,
@@ -25,6 +28,12 @@ export class AppComponent {
     router.events.subscribe((routerEvent: RouterEvent) => {
       this.routerEventHandler(routerEvent);
     });
+  }
+
+  handleMenu(evt) {
+    if (evt) {
+      this.sideNav.open();
+    }
   }
 
   routerEventHandler(routerEvent: RouterEvent) {

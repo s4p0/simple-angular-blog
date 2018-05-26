@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ToolbarService } from '../toolbar.service';
 import { LoginService } from '../login.service';
 
@@ -12,6 +12,12 @@ export class ToolbarComponent implements OnInit {
     private toolbarCtrl: ToolbarService,
     public loginCtrl: LoginService
   ) {}
+
+  @Output() menu = new EventEmitter<boolean>();
+
+  menuToggle(event) {
+    this.menu.emit(true);
+  }
 
   ngOnInit() {}
 

@@ -1,14 +1,27 @@
-<div fxLayout="row">
-  <div fxFlex="grow" fxLayout="column" fxLayoutAlign="start stretch">
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened="'true'" color="primary" class="mat-elevation-z8">
 
-    <div fxFlex>
-      <app-toolbar></app-toolbar>
+    <app-sidebar>
+    </app-sidebar>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div fxLayout="row">
+      <div fxFlex="grow" fxLayout="column" fxLayoutAlign="start stretch">
+        <div fxFlex>
+
+          <app-toolbar (menu)="handleMenu($event)">
+          </app-toolbar>
+
+        </div>
+        <div fxFlex style="margin-top: 1em;">
+
+          <router-outlet>
+          </router-outlet>
+
+        </div>
+
+      </div>
     </div>
-
-    <div fxFlex style="margin-top: 1em;">
-      <router-outlet></router-outlet>
-    </div>
-
-
-  </div>
-</div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
