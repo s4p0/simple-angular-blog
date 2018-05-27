@@ -1,18 +1,23 @@
-<mat-toolbar color="primary" class="mat-elevation-z8">
+<mat-toolbar color="primary" class="primary-toolbar" [class.mat-elevation-z8]="swapText">
   <mat-toolbar-row>
 
     <button *ngIf="showMenuButton" mat-button (click)="menuToggle()">
       <mat-icon>menu</mat-icon>
     </button>
 
-    <div [appMarkdown]="title">
+    <div [appMarkdown]="!swapText ? title : subtitle">
     </div>
 
   </mat-toolbar-row>
+</mat-toolbar>
 
+<mat-toolbar color="primary" class="secondary-toolbar">
   <mat-toolbar-row>
-  </mat-toolbar-row>
 
+    <div style="font-size: 40px;" [appMarkdown]="subtitle">
+    </div>
+
+  </mat-toolbar-row>
 </mat-toolbar>
 
 <div *ngIf="loading" style="z-index: 100;">

@@ -117,3 +117,14 @@ mat-sidenav {
   width: 260px;
   background: #f8f9fa !important;
 }
+
+.primary-toolbar {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
+
+.secondary-toolbar {
+  padding: 64px 64px 32px 64px;
+  z-index: 50;
+}

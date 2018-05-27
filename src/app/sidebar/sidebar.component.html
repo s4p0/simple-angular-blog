@@ -1,12 +1,14 @@
-<mat-toolbar color="primary">
-
+<mat-toolbar color="primary" class="primary-toolbar">
   <mat-toolbar-row>
     <span *ngIf="name">Oi {{name}}</span>
   </mat-toolbar-row>
-  <mat-toolbar-row>
-  </mat-toolbar-row>
-
 </mat-toolbar>
+<mat-toolbar color="primary" class="secondary-toolbar">
+  <mat-toolbar-row></mat-toolbar-row>
+</mat-toolbar>
+
+
+
 <mat-nav-list>
 
   <ng-template ngFor let-menu [ngForOf]="menus$ | async" let-i="index">

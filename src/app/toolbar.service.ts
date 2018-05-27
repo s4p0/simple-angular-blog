@@ -9,9 +9,24 @@ const twemoji = window['twemoji'];
   providedIn: 'root'
 })
 export class ToolbarService {
-  loading: boolean;
   title: SafeHtml;
+  private _subtitle: SafeHtml[];
+  loading: boolean;
   constructor(private mark: MarkdownService) {
     this.title = environment.blogName;
+    this._subtitle = [':wave:'];
+  }
+
+  set subtitle(value) {
+    this._subtitle.push(value);
+  }
+
+  get subtitle() {
+    return this._subtitle[this._subtitle.length - 1];
+  }
+
+  destroySubtitle() {
+    this._subtitle.pop();
+    console.log(this._subtitle);
   }
 }
