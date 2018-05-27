@@ -3,12 +3,17 @@
   <mat-toolbar-row>
     <span *ngIf="name">Oi {{name}}</span>
   </mat-toolbar-row>
+  <mat-toolbar-row>
+  </mat-toolbar-row>
 
 </mat-toolbar>
 <mat-nav-list>
 
   <ng-template ngFor let-menu [ngForOf]="menus$ | async" let-i="index">
     <a mat-list-item [routerLink]="menu.link" *ngIf="!(menu.condition && !menu.condition())" (click)="menu.action && menu.action()">
+      <mat-icon *ngIf="menu.icon" style="padding-right: 16px;">
+        {{menu.icon}}
+      </mat-icon>
       {{menu.caption}}
     </a>
   </ng-template>

@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-  <mat-sidenav mode="side" opened="'true'" color="primary" class="mat-elevation-z8">
+  <mat-sidenav #sideNav [mode]="sideMode" [opened]="!isSmallScreen" color="primary" class="mat-elevation-z12">
 
     <app-sidebar>
     </app-sidebar>
@@ -10,7 +10,7 @@
       <div fxFlex="grow" fxLayout="column" fxLayoutAlign="start stretch">
         <div fxFlex>
 
-          <app-toolbar (menu)="handleMenu($event)">
+          <app-toolbar [showMenuButton]="isSmallScreen" (menu)="sideNav.toggle();">
           </app-toolbar>
 
         </div>

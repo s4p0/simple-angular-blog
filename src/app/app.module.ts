@@ -22,6 +22,7 @@ import { PostComponent } from './post/post.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -41,10 +42,11 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     FormsModule,
     AppMaterialModule,
-    RouterModule.forRoot(AppRoutes)
+    LayoutModule,
+    RouterModule.forRoot(AppRoutes),
+    BrowserAnimationsModule
   ],
   providers: [
     MarkdownService,

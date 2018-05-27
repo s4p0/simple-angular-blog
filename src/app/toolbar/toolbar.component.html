@@ -1,7 +1,7 @@
 <mat-toolbar color="primary" class="mat-elevation-z8">
   <mat-toolbar-row>
 
-    <button mat-button (click)="menuToggle()">
+    <button *ngIf="showMenuButton" mat-button (click)="menuToggle()">
       <mat-icon>menu</mat-icon>
     </button>
 
@@ -9,6 +9,10 @@
     </div>
 
   </mat-toolbar-row>
+
+  <mat-toolbar-row>
+  </mat-toolbar-row>
+
 </mat-toolbar>
 
 <div *ngIf="loading" style="z-index: 100;">
