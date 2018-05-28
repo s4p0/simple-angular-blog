@@ -22,7 +22,7 @@ export class PostsService {
   }
 
   addPost(post: Post) {
-    console.log('creating: ', post);
+    // console.log('creating: ', post);
     return this.http.post(this.blogsUrl, post);
   }
 

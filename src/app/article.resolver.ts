@@ -10,16 +10,13 @@ import { ArticleService } from './article.service';
 
 @Injectable()
 export class ArticleResolver implements Resolve<Post> {
-  constructor(private articleCtrl: ArticleService) {
-    console.log('resolver');
-  }
+  constructor(private articleCtrl: ArticleService) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<Post> {
     const permalink = route.paramMap.get('permalink');
-    console.log(permalink);
     return this.articleCtrl.loadArticleSingle(permalink);
   }
 }

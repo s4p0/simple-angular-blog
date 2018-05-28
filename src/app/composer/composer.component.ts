@@ -165,15 +165,15 @@ export class ComposerComponent implements OnInit {
 
   create() {
     this.posts.addPost(this.form.value).subscribe(res => {
-      console.log('created');
       this.reset();
     });
   }
 
   reset() {
-    this.form.markAsPristine();
-    this.form.markAsUntouched();
-    this.form.reset();
+    this.createForm();
+    // this.form.reset();
+    // this.form.markAsUntouched();
+    // this.form.markAsPristine();
   }
 
   draft() {

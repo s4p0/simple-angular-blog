@@ -34,6 +34,7 @@ const md = markdown({
 export class MarkdownService {
   constructor(private sanitizer: DomSanitizer) {
     this.setup();
+    // console.log('new markdown instantiated');
   }
 
   private setup() {

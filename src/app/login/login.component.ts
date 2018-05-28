@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   send() {
-    console.log(this.model);
+    // console.log(this.model);
     this.loginCtrl.login(this.model);
   }
 }

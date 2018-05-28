@@ -51,10 +51,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     return this.toolbarCtrl.subtitle;
   }
 
-  get loading() {
-    return this.toolbarCtrl.loading;
-  }
-
   ngOnDestroy() {
     this.toDestroy.next();
   }

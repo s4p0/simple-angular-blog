@@ -12,6 +12,7 @@ import { ToolbarService } from './toolbar.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { pluck } from 'rxjs/operators';
+import { LoadingService } from './loading.service';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +28,8 @@ export class AppComponent implements OnInit {
     router: Router,
     private loginCtrl: LoginService,
     private toolbarCtrl: ToolbarService,
-    private breakpoint: BreakpointObserver
+    private breakpoint: BreakpointObserver,
+    private loadingCtrl: LoadingService
   ) {
     router.events.subscribe((routerEvent: RouterEvent) => {
       this.routerEventHandler(routerEvent);
@@ -47,16 +49,20 @@ export class AppComponent implements OnInit {
 
   routerEventHandler(routerEvent: RouterEvent) {
     if (routerEvent instanceof NavigationStart) {
-      this.toolbarCtrl.loading = true;
+      this.loadingCtrl.startProgress();
     }
     if (
       routerEvent instanceof NavigationEnd ||
       routerEvent instanceof NavigationCancel ||
       routerEvent instanceof NavigationError
     ) {
-      this.toolbarCtrl.loading = false;
+      this.loadingCtrl.stopProgress();
     }
 
     return routerEvent;
+  }
+
+  get inProgress() {
+    return this.loadingCtrl.isProgressing;
   }
 }

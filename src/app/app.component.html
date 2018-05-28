@@ -14,7 +14,13 @@
           </app-toolbar>
 
         </div>
+
+        <div *ngIf="inProgress" class="loading mat-elevation-z8">
+          <mat-progress-bar color="accent" mode="indeterminate"></mat-progress-bar>
+        </div>
+
         <div fxFlex style="margin-top: 1em;">
+
 
           <router-outlet>
           </router-outlet>

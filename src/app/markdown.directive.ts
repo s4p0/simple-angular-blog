@@ -22,22 +22,16 @@ export class MarkdownDirective implements OnInit, OnDestroy, OnChanges {
     private el: ElementRef,
     private markdown: MarkdownService,
     private sanitizer: DomSanitizer
-  ) {
-    console.log(this.appMarkdown);
-  }
-  ngOnInit(): void {
-    // this.appMarkdown.subscribe(t => console.log(t));
-    console.log(typeof this.appMarkdown);
-  }
+  ) {}
+
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['appMarkdown'] && this.appMarkdown) {
       this.renderIt(this.appMarkdown);
     }
   }
-  ngOnDestroy(): void {
-    console.log('destroyed', this);
-  }
+  ngOnDestroy(): void {}
 
   renderIt(text: string) {
     const rendered = this.markdown.render(text);

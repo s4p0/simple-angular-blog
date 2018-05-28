@@ -6,5 +6,6 @@
 export const environment = {
   production: false,
   apiUrl: '<your api>',
-  blogName: '<your blog>'
+  blogName: '<your blog>',
+  subtitle: '<your subtitle>'
 };

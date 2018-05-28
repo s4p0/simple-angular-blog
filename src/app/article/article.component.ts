@@ -23,6 +23,5 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.toolbarCtrl.destroySubtitle();
-    console.log('destroySubtitle');
   }
 }

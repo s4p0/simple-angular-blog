@@ -32,13 +32,16 @@ body {
 }
 
 .compose-text {
+}
+
+/* .compose-text {
   width: 100%;
   padding: 3px;
 }
 
 .compose-text:focus {
   height: 20em;
-}
+} */
 
 .markdown-content {
   overflow: hidden;
@@ -121,10 +124,17 @@ mat-sidenav {
 .primary-toolbar {
   position: fixed;
   top: 0;
-  z-index: 100;
+  z-index: 50;
 }
 
 .secondary-toolbar {
   padding: 64px 64px 32px 64px;
-  z-index: 50;
+  z-index: 20;
+}
+
+.loading {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 64px;
+  z-index: 100;
 }
