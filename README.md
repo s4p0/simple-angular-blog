@@ -7,7 +7,8 @@ To start using this, change this `src/environments/environment.ts`:
 ```typescript
 export const environment = {
   production: false,
-  apiUrl: '<your api here>'
+  apiUrl: '<your api here>',
+  subtitle: '<your subtitle>'
 };
 ```
 
