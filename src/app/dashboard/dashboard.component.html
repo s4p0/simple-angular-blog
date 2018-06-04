@@ -1,3 +1,16 @@
-<p>
-  dashboard works!
-</p>
+<div fxFlexLayout="column" fxLayoutAlign="center center">
+  <mat-tab-group [backgroundColor]="'primary'" fxFlex class="max-width mat-elevation-z18">
+
+    <mat-tab position="1" label="Blog Manager">
+      <app-dashboard-article></app-dashboard-article>
+    </mat-tab>
+
+    <mat-tab label="User Manager">
+      <mat-card class="dashboard-tab">
+        <h1>Some tab content</h1>
+        <p>...</p>
+      </mat-card>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>

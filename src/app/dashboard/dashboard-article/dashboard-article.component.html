@@ -1,0 +1,28 @@
+<ng-template #dialog>
+  <h2 mat-dialog-title>Delete ?</h2>
+  <mat-dialog-content>Are you sure?</mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>No</button>
+    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+    <button mat-button [mat-dialog-close]="true">Yes</button>
+  </mat-dialog-actions>
+</ng-template>
+
+<mat-card class="dashboard-tab">
+
+  <mat-list>
+    <h3>Artigos</h3>
+    <mat-list-item *ngFor="let post of posts$ | async">
+
+      <p matLine>{{post.permalink}}</p>
+
+      <div class="flex-fill">
+      </div>
+
+      <!-- <button mat-raised-button color="primary">edit</button> -->
+      <button mat-raised-button color="warn" (click)="delete(post)">delete</button>
+
+    </mat-list-item>
+  </mat-list>
+
+</mat-card>

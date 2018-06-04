@@ -1,5 +1,4 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
-
 .wrapper,
 html,
 body {
@@ -27,12 +26,11 @@ body {
   flex-direction: column;
 }
 
-.example-container > * {
+.example-container>* {
   width: 100%;
 }
 
-.compose-text {
-}
+.compose-text {}
 
 /* .compose-text {
   width: 100%;
@@ -50,7 +48,6 @@ body {
 .article {
   max-width: 1040px;
   /* min-width: 800px; */
-
   /* max-width: 300px; */
   /* align-items: center;
   align-content: center;
@@ -73,6 +70,7 @@ blockquote {
   padding: 0.5em 10px;
   quotes: '\201C' '\201D' '\2018' '\2019';
 }
+
 blockquote:before {
   color: #ccc;
   content: open-quote;
@@ -81,6 +79,7 @@ blockquote:before {
   margin-right: 0.25em;
   vertical-align: -0.4em;
 }
+
 blockquote p {
   display: inline;
 }
@@ -105,7 +104,7 @@ blockquote p {
   width: 100%;
 }
 
-.markdown-directive > p {
+.markdown-directive>p {
   font-size: 80px;
 }
 
@@ -137,4 +136,28 @@ mat-sidenav {
   position: sticky;
   top: 64px;
   z-index: 100;
+}
+
+.max-width {
+  max-width: 1040px;
+}
+
+.dashboard-tab {
+  min-height: 600px
+}
+
+/* LEFT align */
+
+.mat-list .mat-list-item.left .mat-list-item-content {
+  justify-content: flex-start;
+}
+
+/* RIGHT align */
+
+.mat-list .mat-list-item.right .mat-list-item-content {
+  justify-content: flex-end;
+}
+
+.flex-fill {
+  flex: 1 1 auto;
 }

@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  items: Array<{ link: string; text: string; icon: string }>;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
+    this.items = [];
+    this.loadItems();
   }
 
+  loadItems() {
+    this.items.push({ link: '', text: 'edit posts', icon: 'home' });
+  }
+
+  ngOnInit() {}
 }

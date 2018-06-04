@@ -1,13 +1,14 @@
 <mat-toolbar color="primary" class="primary-toolbar">
   <mat-toolbar-row>
-    <span *ngIf="name">Oi {{name}}</span>
+    <span *ngIf="name">Oi</span>
   </mat-toolbar-row>
 </mat-toolbar>
-<mat-toolbar color="primary" class="secondary-toolbar">
-  <mat-toolbar-row></mat-toolbar-row>
+
+<mat-toolbar color="primary" class="secondary-toolbar" style="padding-left: 0">
+  <mat-toolbar-row>
+    <span *ngIf="name">{{name}}</span>
+  </mat-toolbar-row>
 </mat-toolbar>
-
-
 
 <mat-nav-list>
 

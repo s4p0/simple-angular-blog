@@ -23,6 +23,7 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { DashboardArticleComponent } from './dashboard/dashboard-article/dashboard-article.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     PostComponent,
     LoginComponent,
     DashboardComponent,
-    MarkdownDirective
+    MarkdownDirective,
+    DashboardArticleComponent
   ],
   imports: [
     BrowserModule,
